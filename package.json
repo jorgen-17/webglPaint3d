@@ -1,7 +1,7 @@
 {
-    "name": "webgl-paint",
-    "version": "0.1.1",
-    "description": "webGl paint application",
+    "name": "webgl-paint-3d",
+    "version": "0.0.1",
+    "description": "webGl 3d paint application",
     "main": "index.html",
     "scripts": {
         "start": "./node_modules/.bin/webpack-dev-server"
@@ -24,12 +24,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/typedefJorge/webglPaint.git"
+        "url": "git+https://github.com/typedefJorge/webglPaint3d.git"
     },
     "author": "typedefjorge",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/typedefJorge/webglPaint/issues"
+        "url": "https://github.com/typedefJorge/webglPaint3d/issues"
     },
-    "homepage": "https://github.com/typedefJorge/webglPaint#readme"
+    "homepage": "https://github.com/typedefJorge/webglPaint3d #readme"
 }
