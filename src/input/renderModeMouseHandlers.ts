@@ -1,10 +1,10 @@
 import { IMouseHandler } from "./iMouseHandler";
-import { WebGLRenderer, ShapeMode, RGBColor, MouseHelper } from "webgl-renderer";
+import { WebGLRenderer, Shape3dMode, RGBColor, MouseHelper } from "webgl-renderer";
 
 export class   RenderModeMouseHandler implements IMouseHandler
 {
     public mouseDownHandler(event: MouseEvent, canvas: HTMLCanvasElement, renderer: WebGLRenderer,
-        shape: ShapeMode, color: RGBColor): void
+        shape: Shape3dMode, color: RGBColor): void
     {
         let point = MouseHelper.mouseEventToWebGlPoints(event, canvas);
         renderer.addXYZPointToScene(point.x, point.y, 0,
@@ -12,7 +12,7 @@ export class   RenderModeMouseHandler implements IMouseHandler
     }
 
     public mouseMoveHandler(mouseIsDown: boolean, event: MouseEvent, canvas: HTMLCanvasElement,
-        renderer: WebGLRenderer, shape: ShapeMode, color: RGBColor): void
+        renderer: WebGLRenderer, shape: Shape3dMode, color: RGBColor): void
     {
         if (mouseIsDown)
         {
@@ -23,7 +23,7 @@ export class   RenderModeMouseHandler implements IMouseHandler
     }
 
     public mouseUpHandler(event: MouseEvent, canvas: HTMLCanvasElement, renderer: WebGLRenderer,
-        shape: ShapeMode, color: RGBColor): void
+        shape: Shape3dMode, color: RGBColor): void
     {
         let point = MouseHelper.mouseEventToWebGlPoints(event, canvas);
         renderer.addXYZPointToScene(point.x, point.y, 0,

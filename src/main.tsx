@@ -37,16 +37,6 @@ class App extends React.Component<{}, {}>
             this.canvasMouseHandler.mouseHandler = basicShapeModeMouseHandler;
         });
 
-        Dispatcher.addCallback("drawingLines", (colorPayload: Events.DrawingLinesEvent) => {
-            this.canvasMouseHandler.currentShapeMode = "lines";
-            this.canvasMouseHandler.mouseHandler = lineMouseHandler;
-        });
-
-        Dispatcher.addCallback("renderModeChanged", (renderModePayload: Events.RenderModeChangeEvent) => {
-            this.renderer.renderMode = renderModePayload.newRenderMode;
-            this.canvasMouseHandler.mouseHandler = renderModeMouseHandler;
-        });
-
         this.canvas = document.getElementById("mycanvas") as HTMLCanvasElement;
 
         const backgroundColor: RGBColor = new RGBColor(0.1, 0.1, 0.1);
@@ -58,7 +48,7 @@ class App extends React.Component<{}, {}>
         this.renderer = new WebGLRenderer(this.canvas, renderingOptions);
 
         this.currentColor = "white";
-        const defaultShapeMode = "points";
+        const defaultShapeMode = "box";
 
         this.canvasMouseHandler = new CanvasMouseHandler(this.canvas, this.renderer,
             renderModeMouseHandler, defaultShapeMode, ColorMapper.colorToRGBColor(this.currentColor));
