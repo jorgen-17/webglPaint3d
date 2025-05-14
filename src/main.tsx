@@ -1,9 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { WebGLRenderer, RenderingOptions, Color, ColorMapper, RGBColor } from "webgl-renderer";
+import { WebGLRenderer3d, RenderingOptions, Color, ColorMapper, RGBColor, ShapeMode } from "webgl-renderer";
 
 import { CanvasMouseHandler } from "./input/canvasMouseHandler";
-import { RenderModeMouseHandler } from "./input/renderModeMouseHandlers";
 import { BasicShapeModeMouseHandler } from "./input/basicShapeModeMouseHandler";
 import { LineMouseHandler } from "./input/lineMouseHandler";
 import { Menu } from "./ui/reactComponents/menu";
@@ -14,7 +13,7 @@ class App extends React.Component<{}, {}>
 {
     private canvas:  HTMLCanvasElement;
     private gl: WebGLRenderingContext;
-    private renderer: WebGLRenderer;
+    private renderer: WebGLRenderer3d;
     private canvasMouseHandler: CanvasMouseHandler;
     private currentColor: Color;
 
@@ -22,7 +21,6 @@ class App extends React.Component<{}, {}>
     {
         super();
 
-        const renderModeMouseHandler = new RenderModeMouseHandler();
         const basicShapeModeMouseHandler = new BasicShapeModeMouseHandler();
         const lineMouseHandler = new LineMouseHandler();
 
@@ -45,13 +43,13 @@ class App extends React.Component<{}, {}>
             backgroundColor: backgroundColor,
             fullscreen: true
         };
-        this.renderer = new WebGLRenderer(this.canvas, renderingOptions);
+        this.renderer = new WebGLRenderer3d(this.canvas, renderingOptions);
 
-        this.currentColor = "white";
-        const defaultShapeMode = "box";
+        this.currentColor = Color.white;
+        const defaultShapeMode = ShapeMode.box;
 
         this.canvasMouseHandler = new CanvasMouseHandler(this.canvas, this.renderer,
-            renderModeMouseHandler, defaultShapeMode, ColorMapper.colorToRGBColor(this.currentColor));
+            basicShapeModeMouseHandler, defaultShapeMode, ColorMapper.colorToRGBColor(this.currentColor));
 
         this.canvas.addEventListener("mousedown", (event: MouseEvent) => { this.canvasMouseHandler.mouseDown(event); } , false);
         this.canvas.addEventListener("mousemove", (event: MouseEvent) => { this.canvasMouseHandler.mouseMove(event); }, false);
